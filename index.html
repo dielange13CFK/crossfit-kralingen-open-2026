@@ -1541,3 +1541,1546 @@ loadSheets();
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CFK Open Competitie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'Stencil';
+      src: local('Stencil'), local('Stencil Std');
+    }
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #FF6B00;
+      --red-dark: #cc5500;
+      --black: #0a0a0a;
+      --dark: #111111;
+      --dark2: #1a1a1a;
+      --dark3: #222222;
+      --gray: #888;
+      --light: #f0f0f0;
+      --white: #ffffff;
+      --gold: #FFD700;
+      --silver: #C0C0C0;
+      --bronze: #CD7F32;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      background: var(--dark);
+      border-bottom: 3px solid var(--red);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .header-bg {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 60px,
+        rgba(255,107,0,0.04) 60px,
+        rgba(255,107,0,0.04) 61px
+      );
+    }
+
+    .header-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.5rem 0;
+    }
+
+    .logo-icon {
+      width: 54px; height: 54px;
+      background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+      font-size: 1.6rem;
+    }
+
+    h1, h2 {
+      font-family: 'Stencil', 'Bebas Neue', sans-serif !important;
+    }
+
+    .logo-text h1 {
+      font-family: 'Stencil', 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 3px;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .logo-text span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      color: var(--red);
+      text-transform: uppercase;
+    }
+
+    nav { display: flex; gap: 0; }
+
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      padding: 2.2rem 1.4rem;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--white);
+      border-bottom-color: var(--red);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: var(--dark);
+      padding: 5rem 3rem 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(255,107,0,0.12) 0%, transparent 70%);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--red);
+      background: rgba(255,107,0,0.1);
+      border: 1px solid rgba(255,107,0,0.3);
+      padding: 0.4rem 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h2 {
+      font-family: 'Stencil', 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      letter-spacing: 8px;
+      line-height: 0.9;
+      color: var(--white);
+      position: relative;
+    }
+
+    .hero h2 span { color: var(--red); }
+
+    .hero-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      color: var(--gray);
+      margin-top: 1rem;
+      text-transform: uppercase;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .hero-stat { text-align: center; }
+
+    .hero-stat .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .hero-stat .lbl {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    /* ── SECTIONS ── */
+    .section { display: none; padding: 3rem; max-width: 1400px; margin: 0 auto; }
+    .section.active { display: block; }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 5px;
+      color: var(--white);
+      margin-bottom: 2rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+
+    /* ── GOOGLE SHEETS SETUP ── */
+    .sheets-banner {
+      background: var(--dark2);
+      border: 1px solid rgba(255,107,0,0.3);
+      border-left: 4px solid var(--red);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .sheets-banner .info { flex: 1; }
+    .sheets-banner h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .sheets-banner p { font-size: 0.85rem; color: var(--gray); }
+
+    .sheets-input-row {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+
+    .sheets-input {
+      background: var(--dark3);
+      border: 1px solid #333;
+      color: var(--white);
+      padding: 0.6rem 1rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      width: 340px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .sheets-input:focus { border-color: var(--red); }
+
+    .btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-red { background: var(--red); color: var(--white); }
+    .btn-red:hover { background: var(--red-dark); }
+    .btn-outline { background: transparent; color: var(--white); border: 1px solid #444; }
+    .btn-outline:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── DIVISIE TABS ── */
+    .divisie-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #222;
+      flex-wrap: wrap;
+    }
+
+    .div-tab {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.8rem 1.6rem;
+      cursor: pointer;
+      color: var(--gray);
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    .div-tab:hover { color: var(--white); }
+    .div-tab.active { color: var(--white); border-bottom-color: var(--red); }
+
+    /* ── SCOREBOARD TABLE ── */
+    .scoreboard-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    thead th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray);
+      padding: 0.8rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #222;
+      background: var(--dark2);
+      white-space: nowrap;
+    }
+
+    thead th.num-col { text-align: center; }
+
+    tbody tr {
+      border-bottom: 1px solid #1a1a1a;
+      transition: background 0.15s;
+    }
+
+    tbody tr:hover { background: var(--dark2); }
+
+    tbody tr.top-1 { background: rgba(255,215,0,0.05); }
+    tbody tr.top-2 { background: rgba(192,192,192,0.04); }
+    tbody tr.top-3 { background: rgba(205,127,50,0.04); }
+
+    td {
+      padding: 0.9rem 1rem;
+      vertical-align: middle;
+    }
+
+    .rank-cell {
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      width: 60px;
+    }
+
+    .rank-1 { color: var(--gold); }
+    .rank-2 { color: var(--silver); }
+    .rank-3 { color: var(--bronze); }
+    .rank-other { color: var(--gray); }
+
+    .athlete-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .athlete-box { display: flex; align-items: center; gap: 0.8rem; }
+
+    .athlete-avatar {
+      width: 34px; height: 34px;
+      border-radius: 0;
+      background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      flex-shrink: 0;
+      clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+    }
+
+    .score-cell {
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .score-val { font-size: 1rem; font-weight: 600; }
+    .score-pts { font-size: 0.7rem; color: var(--gray); letter-spacing: 1px; }
+
+    .total-cell {
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--red);
+    }
+
+    .badge-rx {
+      font-size: 0.6rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 2px 6px;
+      background: rgba(255,107,0,0.15);
+      border: 1px solid rgba(255,107,0,0.4);
+      color: var(--red);
+    }
+
+    .loading-state {
+      text-align: center;
+      padding: 4rem;
+      color: var(--gray);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .loading-state .spinner {
+      width: 40px; height: 40px;
+      border: 2px solid #222;
+      border-top-color: var(--red);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── REGISTRATIE ── */
+    .reg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    @media (max-width: 768px) { .reg-grid { grid-template-columns: 1fr; } }
+
+    .form-card {
+      background: var(--dark2);
+      border: 1px solid #222;
+      padding: 2rem;
+    }
+
+    .form-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+      margin-bottom: 1.5rem;
+      color: var(--red);
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+
+    .form-group label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: var(--dark3);
+      border: 1px solid #333;
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--red); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+    }
+
+    .reg-info { }
+
+    .info-card {
+      background: var(--dark2);
+      border: 1px solid #222;
+      border-left: 3px solid var(--red);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+
+    .info-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .info-card ul li {
+      font-size: 0.9rem;
+      color: var(--light);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .info-card ul li::before {
+      content: '▸';
+      color: var(--red);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .success-msg {
+      display: none;
+      background: rgba(0,200,100,0.1);
+      border: 1px solid rgba(0,200,100,0.3);
+      color: #00c864;
+      padding: 1rem 1.5rem;
+      margin-top: 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── TIJDSCHEMA ── */
+    .schedule-day {
+      margin-bottom: 3rem;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .day-badge {
+      background: var(--red);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      padding: 0.3rem 0.8rem;
+      white-space: nowrap;
+    }
+
+    .day-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 4px;
+      color: var(--white);
+    }
+
+    .schedule-item {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      background: var(--dark2);
+      border: 1px solid #222;
+      border-left: 3px solid transparent;
+      margin-bottom: 0.6rem;
+      transition: all 0.2s;
+    }
+
+    .schedule-item:hover { border-left-color: var(--red); }
+    .schedule-item.highlight { border-left-color: var(--red); background: rgba(255,107,0,0.05); }
+
+    .schedule-time {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .schedule-time small {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .schedule-info h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .schedule-info p { font-size: 0.85rem; color: var(--gray); }
+
+    .schedule-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+
+    .tag-wod { border-color: var(--red); color: var(--red); background: rgba(255,107,0,0.08); }
+    .tag-ceremony { border-color: var(--gold); color: var(--gold); background: rgba(255,215,0,0.06); }
+    .tag-reg { border-color: #444; color: var(--gray); }
+    .tag-break { border-color: #333; color: #555; }
+
+    /* ── TEAM CARDS ── */
+    .team-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .team-card {
+      background: var(--dark2);
+      border: 1px solid #222;
+      border-top: 4px solid var(--red);
+      padding: 1.5rem;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .team-card:hover { transform: translateY(-2px); }
+    .team-card.rank-gold { border-top-color: var(--gold); }
+    .team-card.rank-silver { border-top-color: var(--silver); }
+    .team-card.rank-bronze { border-top-color: var(--bronze); }
+
+    .team-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+
+    .team-rank-badge {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    .team-name {
+      font-family: 'Stencil','Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      flex: 1;
+      padding: 0 1rem;
+    }
+
+    .team-total {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .team-total small {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: var(--gray);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .team-wods {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .team-wod-box {
+      background: var(--dark3);
+      padding: 0.6rem 0.4rem;
+      text-align: center;
+    }
+
+    .team-wod-box .wod-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .team-wod-box .wod-score {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--white);
+    }
+
+    .team-members {
+      border-top: 1px solid #222;
+      padding-top: 1rem;
+    }
+
+    .team-members-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .team-member-chip {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 0.2rem 0.6rem;
+      background: var(--dark3);
+      border: 1px solid #333;
+      color: var(--light);
+      text-transform: uppercase;
+    }
+
+    /* ── WOD SCORE KAARTEN ── */
+    .wod-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .wod-card {
+      background: var(--dark2);
+      border: 1px solid #222;
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wod-card:hover { transform: translateY(-2px); }
+
+    .wod-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+    }
+
+    .wod-card.rank-gold::before   { background: var(--gold); }
+    .wod-card.rank-silver::before { background: var(--silver); }
+    .wod-card.rank-bronze::before { background: var(--bronze); }
+    .wod-card.rank-other::before  { background: #333; }
+
+    .wod-card-rank {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      line-height: 1;
+      width: 36px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .wod-card-info { flex: 1; min-width: 0; }
+
+    .wod-card-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wod-card-team {
+      font-size: 0.7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .wod-card-score {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      line-height: 1;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .wod-card-score small {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      color: var(--gray);
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    /* ── LOADING STATE ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: var(--dark2);
+      border: 1px solid #333;
+      border-left: 4px solid var(--red);
+      padding: 1rem 1.5rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 999;
+      max-width: 320px;
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast .toast-title { font-weight: 700; color: var(--red); margin-bottom: 0.2rem; text-transform: uppercase; }
+    .toast .toast-msg { color: var(--light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      header .header-content { flex-direction: column; align-items: flex-start; padding: 0 1rem; }
+      nav { overflow-x: auto; width: 100%; }
+      .hero { padding: 3rem 1.5rem 2.5rem; }
+      .hero-stats { gap: 2rem; }
+      .section { padding: 2rem 1rem; }
+      .schedule-item { grid-template-columns: 70px 1fr; }
+      .schedule-tag { display: none; }
+      .sheets-input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-bg"></div>
+  <div class="header-content">
+    <div class="logo-block">
+      <div class="logo-icon">🏋️</div>
+      <div class="logo-text">
+        <h1>CFK OPEN '26</h1>
+        <span>CrossFit Kampioenschap — Officieel Scorebord</span>
+      </div>
+    </div>
+    <nav>
+      <a class="active" onclick="showSection('scoreboard', this)">📊 Scoreboard</a>
+      <a onclick="showSection('tijdschema', this)">📅 Tijdschema</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-tag">▸ Live competitie resultaten</div>
+  <h2>CROSSFIT<br><span>OPEN</span></h2>
+  <p class="hero-sub">27 feb · 6 mrt · 13 mrt · 20 mrt 2026</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num" id="stat-athletes">—</div>
+      <div class="lbl">Atleten</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">4</div>
+      <div class="lbl">WODs</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">5</div>
+      <div class="lbl">Teams</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num" id="stat-boxes">—</div>
+      <div class="lbl">Boxes</div>
+    </div>
+  </div>
+</div>
+
+<!-- ───── SCOREBOARD ───── -->
+<div class="section active" id="sec-scoreboard">
+
+  <div class="sheets-banner">
+    <div class="info">
+      <h3>🔗 Google Sheets Koppeling</h3>
+      <p>Plak je Apps Script URL hieronder en klik Laden.</p>
+    </div>
+    <div class="sheets-input-row">
+      <input class="sheets-input" id="sheetsUrl" type="text"
+        value="https://script.google.com/macros/s/AKfycbwoxcs4Flwbi3qm7TO550V2W-MWXX58MlYB1E4Tbe--wuzns6k1WIri9QuE9FeZEnEjgg/exec"
+        style="width:420px" />
+      <button class="btn btn-red" onclick="loadSheets()">▸ Laden</button>
+    </div>
+  </div>
+
+  <!-- MODE TOGGLE -->
+  <div style="display:flex;gap:0;margin-bottom:1.5rem;border:1px solid #222;width:fit-content">
+    <button class="btn btn-red" id="mode-team" onclick="switchMode('team')" style="border-radius:0;padding:0.7rem 2rem">🏆 Teams</button>
+    <button class="btn btn-outline" id="mode-ind" onclick="switchMode('individueel')" style="border-radius:0;padding:0.7rem 2rem">👤 Individueel</button>
+  </div>
+
+  <!-- TEAM SCOREBOARD -->
+  <div id="view-team">
+    <div class="team-cards" id="team-cards">
+      <div class="loading-state"><div class="spinner"></div>Laad data of klik "Demo data"</div>
+    </div>
+  </div>
+
+  <!-- INDIVIDUEEL SCOREBOARD -->
+  <div id="view-individueel" style="display:none">
+    <div class="divisie-tabs">
+      <button class="div-tab active" onclick="switchWod('overall', this)">🏆 Overall</button>
+      <button class="div-tab" onclick="switchWod('26.1', this)">26.1</button>
+      <button class="div-tab" onclick="switchWod('26.2', this)">26.2</button>
+      <button class="div-tab" onclick="switchWod('26.3', this)">26.3</button>
+      <button class="div-tab" onclick="switchWod('26.4', this)">26.4</button>
+    </div>
+
+    <!-- Man / Vrouw toggle -->
+    <div style="display:flex;gap:0;margin-bottom:1.5rem;border:1px solid #333;width:fit-content">
+      <button class="btn btn-red" id="gen-man" onclick="switchGender('man')" style="border-radius:0;padding:0.5rem 1.5rem;font-size:0.75rem">♂ Man</button>
+      <button class="btn btn-outline" id="gen-vrouw" onclick="switchGender('vrouw')" style="border-radius:0;padding:0.5rem 1.5rem;font-size:0.75rem">♀ Vrouw</button>
+    </div>
+
+    <!-- Scorekaarten grid -->
+    <div class="wod-cards" id="wod-cards"></div>
+  </div>
+</div>
+
+<!-- ───── TIJDSCHEMA ───── -->
+<div class="section" id="sec-tijdschema">
+  <h2 class="section-title">Tijdschema</h2>
+
+  <div class="schedule-day">
+    <div class="day-header">
+      <span class="day-badge">DAG 1</span>
+      <span class="day-title">DONDERDAG 27 FEBRUARI — 26.1</span>
+    </div>
+
+    <div class="schedule-item">
+      <div class="schedule-time">08:00<small>uur</small></div>
+      <div class="schedule-info"><h4>Registratie & Check-in</h4><p>Aanmelden bij de balie, startnummer ophalen</p></div>
+      <span class="schedule-tag tag-reg">Registratie</span>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">08:45<small>uur</small></div>
+      <div class="schedule-info"><h4>Openingsceremonie</h4><p>Welkomstwoord en uitleg van de dag</p></div>
+      <span class="schedule-tag tag-ceremony">Ceremonie</span>
+    </div>
+    <div class="schedule-item highlight">
+      <div class="schedule-time">09:00<small>uur</small></div>
+      <div class="schedule-info"><h4>26.1 — Mannen &amp; Vrouwen</h4><p>27 februari · Heat 1 t/m 4 · 12 min cap</p></div>
+      <span class="schedule-tag tag-wod">26.1 — 27 feb</span>
+    </div>
+    <div class="schedule-item highlight">
+      <div class="schedule-time">10:30<small>uur</small></div>
+      <div class="schedule-info"><h4>26.1 — Alle deelnemers</h4><p>27 februari · 12 min cap</p></div>
+      <span class="schedule-tag tag-wod">26.1 — 27 feb</span>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">12:00<small>uur</small></div>
+      <div class="schedule-info"><h4>Lunchpauze</h4><p>Food trucks aanwezig op het terrein</p></div>
+      <span class="schedule-tag tag-break">Pauze</span>
+    </div>
+    <div class="schedule-item highlight">
+      <div class="schedule-time">13:00<small>uur</small></div>
+      <div class="schedule-info"><h4>26.2 — Alle divisies</h4><p>6 maart · Heat 1 t/m 8 · 15 min cap</p></div>
+      <span class="schedule-tag tag-wod">26.2 — 6 mrt</span>
+    </div>
+    <div class="schedule-item highlight">
+      <div class="schedule-time">15:30<small>uur</small></div>
+      <div class="schedule-info"><h4>26.3 — Alle divisies</h4><p>13 maart · Heat 1 t/m 8 · 20 min cap</p></div>
+      <span class="schedule-tag tag-wod">26.3 — 13 mrt</span>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">18:00<small>uur</small></div>
+      <div class="schedule-info"><h4>Einde dag 1 — Tussenstand bekend</h4><p>Scores worden verwerkt en gepubliceerd</p></div>
+      <span class="schedule-tag tag-ceremony">Stand</span>
+    </div>
+  </div>
+
+  <div class="schedule-day">
+    <div class="day-header">
+      <span class="day-badge">DAG 2</span>
+      <span class="day-title">DONDERDAG 6, 13 &amp; 20 MAART — 26.2, 3 &amp; 4</span>
+    </div>
+
+    <div class="schedule-item">
+      <div class="schedule-time">09:00<small>uur</small></div>
+      <div class="schedule-info"><h4>Inloop &amp; Warming-up</h4><p>Faciliteiten open voor atleten</p></div>
+      <span class="schedule-tag tag-reg">Inloop</span>
+    </div>
+    <div class="schedule-item highlight">
+      <div class="schedule-time">09:30<small>uur</small></div>
+      <div class="schedule-info"><h4>26.4 — Alle divisies</h4><p>20 maart · Heat 1 t/m 8 · 18 min cap</p></div>
+      <span class="schedule-tag tag-wod">26.4 — 20 mrt</span>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">12:00<small>uur</small></div>
+      <div class="schedule-info"><h4>Lunchpauze</h4><p>Food trucks en merchandise stand</p></div>
+      <span class="schedule-tag tag-break">Pauze</span>
+    </div>
+    <div class="schedule-item highlight">
+      <div class="schedule-time">13:00<small>uur</small></div>
+      <div class="schedule-info"><h4>WOD 5 — Finale (Top 10 per divisie)</h4><p>Alleen de top 10 per divisie · 25 min cap</p></div>
+      <span class="schedule-tag tag-wod">FINALE</span>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">15:30<small>uur</small></div>
+      <div class="schedule-info"><h4>Prijsuitreiking &amp; Sluitingsceremonie</h4><p>Top 3 per divisie · Foto-moment</p></div>
+      <span class="schedule-tag tag-ceremony">Ceremonie</span>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">16:30<small>uur</small></div>
+      <div class="schedule-info"><h4>Borrel &amp; Napraten</h4><p>Gezellig afsluiten van het weekend</p></div>
+      <span class="schedule-tag tag-break">Sociaal</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-title" id="toast-title"></div>
+  <div class="toast-msg" id="toast-msg"></div>
+</div>
+
+<script>
+// ── STATE ──
+let allData = [];
+let teamData = [];
+let currentDiv = 'man';
+let currentWod = 'overall';
+let currentGender = 'man';
+
+const TEAMS = [
+  'team old school',
+  'team kralingse kracht',
+  'team beastmode',
+  'brabbel & barbell',
+  'the pink burpee club'
+];
+
+const TEAM_COLORS = {
+  'team old school':        '#FF6B00',
+  'team kralingse kracht':  '#00c853',
+  'team beastmode':         '#e63950',
+  'brabbel & barbell':      '#00bcd4',
+  'the pink burpee club':   '#e91e8c',
+};
+
+// ── NAVIGATION ──
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── MODE TOGGLE ──
+function switchMode(mode) {
+  currentMode = mode;
+  document.getElementById('view-team').style.display = mode === 'team' ? 'block' : 'none';
+  document.getElementById('view-individueel').style.display = mode === 'individueel' ? 'block' : 'none';
+  document.getElementById('mode-team').className = mode === 'team' ? 'btn btn-red' : 'btn btn-outline';
+  document.getElementById('mode-ind').className = mode === 'individueel' ? 'btn btn-red' : 'btn btn-outline';
+  if (mode === 'individueel') renderWodCards();
+  else renderTeams();
+}
+
+// ── WOD / GENDER SWITCH ──
+function switchWod(wod, el) {
+  currentWod = wod;
+  document.querySelectorAll('.div-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderWodCards();
+}
+
+function switchGender(gender) {
+  currentGender = gender;
+  document.getElementById('gen-man').className   = gender === 'man'   ? 'btn btn-red'     : 'btn btn-outline';
+  document.getElementById('gen-vrouw').className = gender === 'vrouw' ? 'btn btn-red'     : 'btn btn-outline';
+  document.getElementById('gen-man').style.cssText   = 'border-radius:0;padding:0.5rem 1.5rem;font-size:0.75rem';
+  document.getElementById('gen-vrouw').style.cssText = 'border-radius:0;padding:0.5rem 1.5rem;font-size:0.75rem';
+  renderWodCards();
+}
+
+// ── legacy compat ──
+function switchDiv(div, el) { switchGender(div); }
+
+// ── DEMO DATA ──
+function loadDemo() {
+  const membersByTeam = {
+    'team old school':        [['Alex','man'],['Danny V','man'],['Laura','vrouw'],['Chris','man'],['Logan','man'],['Simon','man'],['Nina','vrouw'],['Koen','man'],['Pouyan','man']],
+    'team kralingse kracht':  [['Kelly','vrouw'],['Kevin','man'],['Tessa','vrouw'],['Danny B','man'],['Fuat','man'],['Rambo','man'],['Anouschka','vrouw'],['Jorrit','man']],
+    'team beastmode':         [['Eline','vrouw'],['Menno','man'],['Eva','vrouw'],['Joannes','man'],['Roy M','man'],['Martijn','man'],['Nicolai','man'],['Joyce','vrouw']],
+    'brabbel & barbell':      [['Boetz','man'],['Ka','vrouw'],['Yoran','man'],['Ronnie','man'],['Jair','man'],['Santi','man'],['Liesbeth','vrouw'],['Joeri','man']],
+    'the pink burpee club':   [['Eugene','man'],['Froukje','vrouw'],['Pascal','man'],['Ingeborg','vrouw'],['Reshma','vrouw'],['Roy S','man'],['Franck','man']],
+  };
+
+  allData = [];
+  TEAMS.forEach(team => {
+    (membersByTeam[team] || []).forEach(([naam, divisie]) => {
+      allData.push({
+        naam, divisie, team,
+        box: 'CFK',
+        overall: 0,
+        wods: [0, 0, 0, 0]
+      });
+    });
+  });
+
+  // Team scores — eigen invoer (gesimuleerd)
+  teamData = TEAMS.map(team => ({
+    naam: team,
+    wods: [0, 0, 0, 0],
+    leden: allData.filter(a => a.team === team).map(a => a.naam)
+  }));
+
+  updateStats();
+  renderTeams();
+  toast('Demo geladen', '5 teams geladen met atleten');
+}
+
+// ── RENDER TEAMS ──
+function renderTeams() {
+  const sorted = [...teamData]
+    .map(t => ({ ...t, total: t.totaalOverride || 0 }))
+    .sort((a,b) => {
+      if (a.total === 0 && b.total === 0) return 0;
+      if (a.total === 0) return 1;
+      if (b.total === 0) return -1;
+      return b.total - a.total; // hoogste punten = beter
+    });
+
+  const rankClasses = ['rank-gold','rank-silver','rank-bronze','',''];
+  const rankSymbols = ['🥇','🥈','🥉','4','5'];
+
+  document.getElementById('team-cards').innerHTML = sorted.map((t, i) => {
+    const color = TEAM_COLORS[t.naam] || 'var(--red)';
+    return `
+    <div class="team-card ${rankClasses[i]}" style="border-top-color:${color}">
+      <div class="team-card-header">
+        <div class="team-rank-badge" style="color:${i<3?['var(--gold)','var(--silver)','var(--bronze)'][i]:'var(--gray)'}">${rankSymbols[i]}</div>
+        <div class="team-name" style="color:${color}">${t.naam.replace(/\b\w/g, c => c.toUpperCase())}</div>
+      </div>
+      <div style="text-align:center;padding:1.2rem 0 1rem;border-bottom:1px solid #222;margin-bottom:1rem">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;color:${color}">${t.total > 0 ? t.total : '—'}</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:3px;color:var(--gray);text-transform:uppercase">Punten</div>
+      </div>
+      <div class="team-members">
+        <div class="team-members-label">👥 Teamleden (${t.leden.length})</div>
+        <div class="team-member-list">
+          ${t.leden.map(l => `<span class="team-member-chip">${l}</span>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── RENDER WOD SCOREKAARTEN ──
+function renderWodCards() {
+  const wodIndex = { '26.1': 0, '26.2': 1, '26.3': 2, '26.4': 3 };
+  
+  // Filter op gender
+  const heeftGenderData = allData.some(a => a.divisie === currentGender);
+  const filtered = heeftGenderData ? allData.filter(a => a.divisie === currentGender) : allData;
+
+  let sorted;
+  if (currentWod === 'overall') {
+    sorted = [...filtered]
+      .map(a => ({ ...a, score: a.overall > 0 ? a.overall : a.wods[0] > 0 ? a.wods[0] : 0 }))
+      .filter(a => a.score > 0)
+      .sort((a,b) => a.score - b.score);
+  } else {
+    const wi = wodIndex[currentWod];
+    sorted = [...filtered]
+      .map(a => ({ ...a, score: a.wods[wi] || 0 }))
+      .filter(a => a.score > 0)
+      .sort((a,b) => a.score - b.score);
+  }
+
+  const rankClass = i => i===0?'rank-gold':i===1?'rank-silver':i===2?'rank-bronze':'rank-other';
+  const rankColor = i => i===0?'var(--gold)':i===1?'var(--silver)':i===2?'var(--bronze)':'var(--gray)';
+  const rankSymbol = i => i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}`;
+
+  const container = document.getElementById('wod-cards');
+
+  if (sorted.length === 0) {
+    container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray);font-family:'Barlow Condensed',sans-serif;letter-spacing:3px;text-transform:uppercase">Geen scores beschikbaar</div>`;
+    return;
+  }
+
+  container.innerHTML = sorted.map((a, i) => {
+    const tc = TEAM_COLORS[a.team] || 'var(--gray)';
+    const teamDisplay = a.team.replace(/\b\w/g, c => c.toUpperCase());
+    const genderBadge = a.divisie === 'vrouw' ? '♀' : '♂';
+    return `
+    <div class="wod-card ${rankClass(i)}">
+      <div class="wod-card-rank" style="color:${rankColor(i)}">${rankSymbol(i)}</div>
+      <div class="wod-card-info">
+        <div class="wod-card-name">${a.naam} <span style="color:var(--gray);font-size:0.8rem">${genderBadge}</span></div>
+        <div class="wod-card-team" style="color:${tc}">${teamDisplay}</div>
+      </div>
+      <div class="wod-card-score" style="color:var(--red)">
+        ${a.score}
+        <small>plek</small>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── legacy compat ──
+function renderTable() { renderWodCards(); }
+
+// ── INPUT TAB SWITCH ──
+function switchInputTab(tab) {
+  ['paste','upload','url'].forEach(t => {
+    document.getElementById('input-'+t).style.display = t === tab ? 'block' : 'none';
+    const btn = document.getElementById('tab-'+t);
+    if (btn) btn.className = t === tab ? 'btn btn-red' : 'btn btn-outline';
+    if (btn) btn.style.cssText = 'border-radius:0;padding:0.6rem 1.4rem;font-size:0.75rem';
+  });
+}
+
+function loadFromFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  document.getElementById('fileName').textContent = file.name;
+  const reader = new FileReader();
+  reader.onload = e => {
+    parseCSV(e.target.result);
+    toast('Geladen!', `${allData.length} atleten · ${file.name}`);
+  };
+  reader.readAsText(file);
+}
+
+function loadFromPaste() {
+  const raw = document.getElementById('pasteArea').value.trim();
+  if (!raw) { toast('Leeg', 'Plak eerst data uit Google Sheets'); return; }
+
+  // Google Sheets kopieert als tab-gescheiden tekst
+  // Splits op regels, maar houd rekening met enters binnen cellen
+  const lines = raw.split('\n');
+  const rows = [];
+  let current = [];
+
+  for (const line of lines) {
+    const cols = line.split('\t');
+    if (current.length === 0) {
+      current = cols;
+    } else {
+      // Als de regel geen tabs heeft, is het een enter binnen een cel
+      if (cols.length === 1 && !line.includes('\t')) {
+        // Voeg toe aan laatste kolom van vorige rij
+        current[current.length - 1] += ' ' + line.trim();
+      } else {
+        rows.push(current);
+        current = cols;
+      }
+    }
+  }
+  if (current.length > 0) rows.push(current);
+
+  // Zoek header rij
+  let headerIdx = 0;
+  for (let i = 0; i < Math.min(5, rows.length); i++) {
+    if (rows[i].map(x => x.toLowerCase()).some(x => x.trim() === 'naam')) { headerIdx = i; break; }
+  }
+
+  const h = rows[headerIdx].map(x => x.toLowerCase().trim());
+  const dataRows = rows.slice(headerIdx + 1);
+
+  // Exacte kolomindexen uit CSV:
+  // 0=team, 1=punten, 2=naam, 3=team, 4=leeg, 5=divisie, 6=26.1, 7=26.2, 8=26.3, 9=26.4, 10=overall
+  const iNaam    = 2;
+  const iTeam    = 3;
+  const iDivisie = 5;
+  const i261     = 6;
+  const i262     = 7;
+  const i263     = 8;
+  const i264     = 9;
+  const iOverall = 10;
+  const iPunten  = 1;
+
+  // Teamscores uit kolom A+B
+  const teamScoresMap = {};
+  dataRows.forEach(r => {
+    const tn  = (r[0] || '').toLowerCase().trim();
+    const pts = parseFloat(r[iPunten]) || 0;
+    if (tn && TEAMS.includes(tn)) teamScoresMap[tn] = pts;
+  });
+
+  // Individuele atleten
+  allData = dataRows.filter(r => {
+    const naam = (r[iNaam] || '').trim();
+    const team = (r[iTeam] || '').trim();
+    return naam.length > 0 && team.length > 0;
+  }).map(r => {
+    const rawDiv = (r[iDivisie] || '').toLowerCase().replace(/\s+/g, '').trim();
+    return {
+      naam:    r[iNaam].trim(),
+      team:    r[iTeam].toLowerCase().trim(),
+      divisie: rawDiv.startsWith('vr') ? 'vrouw' : 'man',
+      box:     'CFK',
+      overall: parseFloat(r[iOverall]) || 0,
+      wods: [
+        parseFloat(r[i261]) || 0,
+        parseFloat(r[i262]) || 0,
+        parseFloat(r[i263]) || 0,
+        parseFloat(r[i264]) || 0,
+      ]
+    };
+  });
+
+  teamData = TEAMS.map(team => {
+    const members = allData.filter(a => a.team === team);
+    return {
+      naam: team,
+      leden: members.map(m => m.naam),
+      totaalOverride: teamScoresMap[team] || 0,
+      wods: [0,1,2,3].map(wi => members.reduce((s,m) => s + (m.wods[wi]||0), 0))
+    };
+  });
+
+  updateStats();
+  renderTeams();
+  renderWodCards();
+  toast('Geladen!', `${allData.length} atleten · ${Object.keys(teamScoresMap).length} teams`);
+}
+
+// ── DEBUG ──
+async function debugSheets() {
+  const url = document.getElementById('sheetsUrl').value.trim();
+  if (!url) { toast('Fout', 'Vul eerst een URL in'); return; }
+  const proxies = [
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  ];
+  for (const p of proxies) {
+    try {
+      const res = await fetch(p, { signal: AbortSignal.timeout(8000) });
+      const text = await res.text();
+      if (!text || text.includes('<html')) continue;
+      const rows = text.trim().split('\n').slice(0, 5);
+      alert('Eerste 5 rijen CSV:\n\n' + rows.map((r,i) => `Rij ${i}: ${r}`).join('\n\n'));
+      return;
+    } catch(e) { continue; }
+  }
+  alert('Kon sheet niet ophalen');
+}
+
+// ── GOOGLE SHEETS ──
+async function loadSheets() {
+  const url = document.getElementById('sheetsUrl').value.trim();
+  if (!url) { toast('Fout', 'Vul eerst de URL in'); return; }
+
+  toast('Laden...', 'Data ophalen uit Google Sheets');
+
+  try {
+    const res = await fetch(url, { redirect: 'follow' });
+    const text = await res.text();
+    if (!text || text.trim().length < 10) throw new Error('Lege response');
+    if (text.includes('<!DOCTYPE') || text.includes('<html')) throw new Error('HTML ontvangen ipv data');
+    parseCSV(text);
+    toast('Geladen! ✓', `${allData.length} atleten · ${teamData.filter(t=>t.totaalOverride>0).length} teams`);
+  } catch(e) {
+    toast('Fout', e.message);
+    // Probeer via allorigins als fallback
+    try {
+      const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+      const res2 = await fetch(proxy, { signal: AbortSignal.timeout(10000) });
+      const text2 = await res2.text();
+      if (!text2 || text2.includes('<html')) throw new Error('Proxy ook mislukt');
+      parseCSV(text2);
+      toast('Geladen! ✓', `${allData.length} atleten geladen (via proxy)`);
+    } catch(e2) {
+      toast('Fout', 'Kan data niet laden. Controleer de URL.');
+    }
+  }
+}
+
+function loadFromPaste() {
+  const text = document.getElementById('csvPaste')?.value.trim();
+  if (!text) return;
+  parseCSV(text);
+  toast('Geladen!', 'Data verwerkt');
+}
+
+function parseCSV(text) {
+  const allRows = text.trim().replace(/\r/g, '').split('\n').map(r => r.split(',').map(c => c.trim().replace(/"/g,'')));
+
+  // Zoek de header rij (bevat 'naam')
+  let headerIdx = 0;
+  for (let i = 0; i < Math.min(5, allRows.length); i++) {
+    if (allRows[i].map(x => x.toLowerCase()).some(x => x === 'naam')) { headerIdx = i; break; }
+  }
+
+  const h    = allRows[headerIdx].map(x => x.toLowerCase().trim());
+  const rows = allRows.slice(headerIdx + 1);
+
+  // ── TEAM DATA (kolom A=0 en B=1 alleen) ──
+  const teamScoresMap = {};
+  rows.forEach(r => {
+    const tn  = (r[0] || '').toLowerCase().trim();
+    const pts = parseFloat(r[1]) || 0;
+    if (tn && TEAMS.includes(tn)) teamScoresMap[tn] = pts;
+  });
+
+  // ── INDIVIDUELE DATA ──
+  // 0=team, 1=punten, 2=naam, 3=team, 4=divisie, 5=26.1, 6=26.2, 7=26.3, 8=26.4, 9=overall
+  const iNaam    = 2;
+  const iTeam    = 3;
+  const iDivisie = 4;
+  const i261     = 5;
+  const i262     = 6;
+  const i263     = 7;
+  const i264     = 8;
+  const iOverall = 9;
+
+  allData = rows.filter(r => {
+    const naam = (r[iNaam] || '').trim();
+    const team = (r[iTeam] || '').trim();
+    return naam.length > 0 && team.length > 0;
+  }).map(r => {
+    const rawDiv = (r[iDivisie] || '').toLowerCase().replace(/\s+/g, '').trim();
+    return {
+      naam:    r[iNaam].trim(),
+      team:    r[iTeam].toLowerCase().trim(),
+      divisie: rawDiv.startsWith('vr') ? 'vrouw' : 'man',
+      box:     'CFK',
+      overall: parseFloat(r[iOverall]) || 0,
+      wods: [
+        parseFloat(r[i261]) || 0,
+        parseFloat(r[i262]) || 0,
+        parseFloat(r[i263]) || 0,
+        parseFloat(r[i264]) || 0,
+      ]
+    };
+  });
+
+  // ── TEAMDATA samenvoegen ──
+  teamData = TEAMS.map(team => {
+    const members = allData.filter(a => a.team === team);
+    return {
+      naam: team,
+      leden: members.map(m => m.naam),
+      totaalOverride: teamScoresMap[team] || 0,
+      wods: [0,1,2,3].map(wi => members.reduce((s,m) => s + (m.wods[wi]||0), 0))
+    };
+  });
+
+  updateStats();
+  renderTeams();
+  renderWodCards();
+}
+
+// ── STATS ──
+function updateStats() {
+  document.getElementById('stat-athletes').textContent = allData.length;
+  const boxes = new Set(allData.map(a => a.box));
+  document.getElementById('stat-boxes').textContent = boxes.size || teamData.length;
+}
+
+// ── REGISTRATIE ──
+function submitReg() {
+  const first = document.getElementById('f-first').value.trim();
+  const last  = document.getElementById('f-last').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const div   = document.getElementById('f-div').value;
+
+  if (!first || !last || !email || !div) {
+    toast('Onvolledig', 'Vul alle verplichte velden in');
+    return;
+  }
+  document.getElementById('reg-success').style.display = 'block';
+  toast('Inschrijving ontvangen!', `Welkom ${first} — check je e-mail`);
+  setTimeout(() => {
+    ['f-first','f-last','f-email','f-dob','f-box','f-notes'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('f-div').value = '';
+    document.getElementById('f-team').value = '';
+  }, 500);
+}
+
+// ── TOAST ──
+function toast(title, msg) {
+  const el = document.getElementById('toast');
+  document.getElementById('toast-title').textContent = title;
+  document.getElementById('toast-msg').textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+loadSheets();
+</script>
+</body>
+</html>
